@@ -8,9 +8,10 @@ export default function TaskProvider({children}:Readonly<{children:React.ReactNo
     const [data, setData] = useState([]);
 
     const getTask = async ()=>{
-        const ftch = await fetch('https://server-task-production.up.railway.app/');
-        const dta = await ftch.json();
-        setData(dta);
+        fetch('https://server-task-production.up.railway.app/')
+        .then(res=>res.json())
+        .then(data=>setData(data))
+        .catch(err=>console.log(err))
     }
 
     useEffect(()=>{
